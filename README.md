@@ -44,9 +44,10 @@ Maintain your custom lists  (Work List, Home List, College List etc):
 ![image](https://github.com/KritiDwivedi/LineUp/assets/99080306/672e256c-9ad0-48c7-a70e-f504b31f07ab)
 
 
+All the lists are saved safely in monngoDb:
 
 
-
+![image](https://github.com/KritiDwivedi/LineUp/assets/99080306/bb1c4817-1bca-4404-99e0-06ac84912ae3)
 
 
 

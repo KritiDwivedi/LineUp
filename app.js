@@ -20,12 +20,13 @@ const app=express();
 const mongoose=require("mongoose"); 
 app.use(express.urlencoded({extended:true}));
 app.use(express.static("public"));
+const _=require("lodash");
 // const date =require(__dirname+"/date.js");  COMMENTING OUT FOR MONGO DB
 // console.log(date.getDate());
 
 
 //Connecting to the databse:
-mongoose.connect("mongodb://localhost:27017/todolistDB");
+mongoose.connect("mongodb://localhost:27017/todolistDataBase");
 
 
 //Creating Schema
@@ -207,14 +208,30 @@ else{
 app.post("/delete",function(req,res){
 // console.log(req.body);
  const checkedItemId=req.body.checkbox;
+ const listName= req.body.listName;
+
+ if(listName==="Today"){
  Item.findByIdAndRemove(checkedItemId).then(function(){
 
     console.log("Deleted");
     res.redirect("/");
 }).catch(function(err){
     console.log(err);
-});
+});}
+else{
 
+List.findOneAndUpdate({name:listName},{$pull:{items:{_id:checkedItemId}}}).then(function(foundList){
+
+res.redirect("/"+listName);
+
+
+
+}).catch(function(err){
+    console.log(err);
+})
+
+
+}
 
 });
 
@@ -232,7 +249,7 @@ app.post("/delete",function(req,res){
 
 
             app.get("/:customListName",function(req,res){
-            const customListName=req.params.customListName;
+            const customListName=_.capitalize(req.params.customListName);
 console.log(customListName);
 
 
@@ -341,3 +358,10 @@ console.log(customListName);
             console.log("Server started on port 3000");
             });
   
+
+
+
+            
+            
+         
+             

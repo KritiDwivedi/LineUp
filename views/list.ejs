@@ -19,8 +19,8 @@
 
 
      <div class="box" id="heading"><h1><%=listTitle %></h1></div>
-        
-     
+   
+      
      
          <div class="box">
 
@@ -28,7 +28,12 @@
    <form action="/delete" method="post">
 <div class="item">
     <input name="checkbox" type="checkbox" onChange="this.form.submit()" value="<%=item._id%>">
-    <p><%=item.name   %></p></div></form>
+    <p><%=item.name   %></p></div>
+    <input type="hidden" name="listName" value="<%=listTitle%>">
+
+
+
+</form>
 <%})%>
          
 
